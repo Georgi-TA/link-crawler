@@ -35,6 +35,15 @@ for anchor in anchors:
 					anchors.append(internal_anchor)
 
 
+def get_seo_tag(s, keyword):
+	tag = s.find('meta', {'name':keyword})
+
+	if tag and tag.attrs and tag.attrs['content']:
+		return tag.attrs['content']
+	else:
+		return "Missing"
+
+
 def get_og_tag(s, keyword):
 	tag = s.find('meta', {'property':keyword})
 
@@ -70,9 +79,9 @@ for anchor in anchors:
 
 	# SEO
 	title = soup.find('title').text
-	meta_description = soup.find('meta', {"name": "description"}).attrs['content']
-	meta_keywords = soup.find('meta', {"name": "keywords"}).attrs['content']
-	meta_image = soup.find('meta', {"name": "image"}).attrs['content']
+	meta_description = get_seo_tag(soup, "description")
+	meta_keywords = get_seo_tag(soup, "keywords")
+	meta_image = get_seo_tag(soup, "image")
 
 	# OpenGraph
 	og_title = get_og_tag(soup, "og:title")
