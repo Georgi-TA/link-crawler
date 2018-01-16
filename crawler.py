@@ -77,7 +77,7 @@ for anchor in anchors:
     soup = BeautifulSoup(r.text, 'html.parser')
 
     # SEO
-    title_tag = soup.find('title');
+    title_tag = soup.find('title')
     if title_tag:
         title = unicode(title_tag.text)
     else:
