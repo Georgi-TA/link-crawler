@@ -18,5 +18,8 @@ def login():
         # the code below is executed if the request method was GET
         return render_template('error.html', error=error)
 
+
 if __name__ == '__main__':
-      app.run(host='0.0.0.0', port=80)
+    from os import environ
+    port = int(environ.get('PORT', 5000))
+    app.run(debug=False, port=port)
