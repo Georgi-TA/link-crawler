@@ -17,3 +17,6 @@ def login():
         error = 'Invalid method'
         # the code below is executed if the request method was GET
         return render_template('error.html', error=error)
+
+if __name__ == '__main__':
+      app.run(host='0.0.0.0', port=80)
