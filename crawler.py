@@ -18,7 +18,7 @@ def get_seo_tag(s, keyword):
     tag = s.find('meta', {'name': keyword})
 
     if tag and tag.attrs and tag.attrs['content']:
-        return unicode(tag.attrs['content'])
+        return str(tag.attrs['content'])
     else:
         return "Missing"
 
@@ -27,7 +27,7 @@ def get_og_tag(s, keyword):
     tag = s.find('meta', {'property': keyword})
 
     if tag and tag.attrs and tag.attrs['content']:
-        return unicode(tag.attrs['content'])
+        return str(tag.attrs['content'])
     else:
         return "Missing"
 
@@ -36,7 +36,7 @@ def get_twitter_tag(s, keyword):
     tag = s.find('meta', {'name': keyword})
 
     if tag and tag.attrs and tag.attrs['content']:
-        return unicode(tag.attrs['content'])
+        return str(tag.attrs['content'])
     else:
         return "Missing"
 
@@ -76,7 +76,7 @@ def render_page(url, recursive):
         # SEO
         title_tag = soup.find('title')
         if title_tag:
-            title = unicode(title_tag.text)
+            title = str(title_tag.text)
         else:
             title = "Missing"
         meta_description = get_seo_tag(soup, "description")
@@ -103,7 +103,7 @@ def render_page(url, recursive):
         print ("----------------")
         print (page_url)
         print ("----------------")
-        formatted_template = formatted_template + unicode(template).format(page_url, title, meta_description,
+        formatted_template = formatted_template + str(template).format(page_url, title, meta_description,
                                                                            meta_keywords,
                                                                            meta_image,
                                                                            og_title, og_description, og_image, og_url,
@@ -114,5 +114,5 @@ def render_page(url, recursive):
                                                                            twitter_url,
                                                                            twitter_image_src)
 
-    main_template = unicode(main_template).format(formatted_template)
+    main_template = str(main_template).format(formatted_template)
     return main_template
