@@ -41,6 +41,13 @@ def get_twitter_tag(s, keyword):
         return "Missing"
 
 
+def format_image_url(image_url, prefix_url):
+    if prefix_url not in image_url:
+        return prefix_url + image_url
+    else:
+        return image_url
+
+
 def render_page(url, recursive):
 
     template = open("templates/page_template.html", 'r').read()
@@ -82,11 +89,13 @@ def render_page(url, recursive):
         meta_description = get_seo_tag(soup, "description")
         meta_keywords = get_seo_tag(soup, "keywords")
         meta_image = get_seo_tag(soup, "image")
+        meta_image = format_image_url(meta_image, page_url)
 
         # OpenGraph
         og_title = get_og_tag(soup, "og:title")
         og_description = get_og_tag(soup, "og:description")
         og_image = get_og_tag(soup, "og:image")
+        og_image = format_image_url(og_image, page_url)
         og_url = get_og_tag(soup, "og:url")
         og_site_name = get_og_tag(soup, "og:site_name")
         og_type = get_og_tag(soup, "og:type")
@@ -99,6 +108,7 @@ def render_page(url, recursive):
         twitter_description = get_twitter_tag(soup, "twitter:description")
         twitter_url = get_twitter_tag(soup, "twitter:url")
         twitter_image_src = get_twitter_tag(soup, "twitter:image:src")
+        twitter_image_src = format_image_url(twitter_image_src, page_url)
 
         print ("----------------")
         print (page_url)
