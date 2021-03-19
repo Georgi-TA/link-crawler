@@ -2,7 +2,7 @@ beautifulsoup4==4.6.0
 click==6.7
 cryptography==1.9
 Flask==0.12.2
-Jinja2==2.10
+Jinja2==2.11.3
 requests==2.18.4
 six==1.10.0
 urllib3==1.22
